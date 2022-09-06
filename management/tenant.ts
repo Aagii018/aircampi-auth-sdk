@@ -1,7 +1,9 @@
 import { ITenant, TenantView, TenantId, TenantOptional } from "./schema";
 
 export class Tenant implements ITenant {
-	constructor(private client_id: string, private domain: string) {}
+	constructor(private client_id: string, private domain: string) {
+		console.log("Working 2");
+	}
 
 	async getTenants(): Promise<TenantView[]> {
 		return this.request("tenants");

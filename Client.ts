@@ -7,6 +7,7 @@ export class Client {
 	constructor(config: Config) {
 		this.client_id = config.client_id;
 		this.domain = config.domain || "http://localhost:8536";
+		console.log("Working");
 	}
 
 	get tenant() {
