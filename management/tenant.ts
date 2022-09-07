@@ -31,7 +31,7 @@ export class Tenant implements ITenant {
 	): Promise<T> {
 		let url: string;
 		if (body) {
-			// url = `${this.domain}/auth/v1/${endpoint}/${encodeGetParams(body!)}`;
+			url = `${this.domain}/auth/v1/${endpoint}/${encodeGetParams(body!)}`;
 		} else {
 			url = `${this.domain}/auth/v1/${endpoint}`;
 		}
@@ -55,8 +55,8 @@ export class Tenant implements ITenant {
 	}
 }
 
-// function encodeGetParams(p: object): string {
-// 	return Object.entries(p)
-// 		.map((kv) => kv.map(encodeURIComponent).join("="))
-// 		.join("&");
-// }
+function encodeGetParams(p: object): string {
+	return Object.entries(p)
+		.map((kv) => kv.map(encodeURIComponent).join("="))
+		.join("&");
+}
