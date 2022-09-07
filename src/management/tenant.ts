@@ -19,7 +19,7 @@ export class Tenant implements ITenant {
 	}
 
 	async updateTenant(form: TenantId & TenantOptional): Promise<TenantView> {
-		return this.request(`tenants/${form.tenant_id}`, HttpType.Post, form);
+		return this.request(`tenants/${form.tenant_id}`, HttpType.Put, form);
 	}
 
 	protected request<T>(
