@@ -1,5 +1,12 @@
 import { ITenant, TenantView, TenantId, TenantOptional } from "./schema";
 
+enum HttpType {
+	Get = "GET",
+	Post = "POST",
+	Put = "PUT",
+	Delete = "DELETE",
+}
+
 export class Tenant implements ITenant {
 	constructor(private client_id: string, private domain: string) {
 		console.log("Working 2");
@@ -14,22 +21,28 @@ export class Tenant implements ITenant {
 	}
 
 	async updateTenant(form: TenantId & TenantOptional): Promise<TenantView> {
-		return this.request(`tenants/${form.tenant_id}`, {
-			method: "PUT",
-			body: JSON.stringify(form),
-		});
+		return this.request(`tenants/${form.tenant_id}`, HttpType.Post, form);
 	}
 
-	protected request<T>(endpoint: string, options?: RequestInit): Promise<T> {
-		const url = `${this.domain}/auth/v1/${endpoint}/${encodeGetParams(
-			<RequestInit>options?.body
-		)}`;
+	protected request<T>(
+		endpoint: string,
+		type?: HttpType,
+		body?: object
+	): Promise<T> {
+		let url: string;
+		if (body) {
+			url = `${this.domain}/auth/v1/${endpoint}/${encodeGetParams(body!)}`;
+		} else {
+			url = `${this.domain}/auth/v1/${endpoint}`;
+		}
+
 		const headers = {
 			"Content-Type": "application/json",
 			"client-id": this.client_id,
 		};
 		const config = {
-			...options,
+			method: type,
+			body: JSON.stringify(body),
 			headers,
 		};
 
