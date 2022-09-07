@@ -26,6 +26,8 @@ export type TenantId = {
 
 type TenantName = {
 	tenant_name: string;
+	hi?: string;
+	hehe?: number;
 };
 
 export type TenantOptional = {

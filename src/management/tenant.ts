@@ -1,35 +1,52 @@
 import { ITenant, TenantView, TenantId, TenantOptional } from "./schema";
 
+enum HttpType {
+	Get = "GET",
+	Post = "POST",
+	Put = "PUT",
+	Delete = "DELETE",
+}
+
 export class Tenant implements ITenant {
 	constructor(private client_id: string, private domain: string) {}
 
 	async getTenants(): Promise<TenantView[]> {
-		return this.request("tenants");
+		return this.request("tenants", HttpType.Get);
 	}
 
 	async getTenantById(form: TenantId): Promise<TenantView> {
-		return this.request(`tenants/${form.tenant_id}`);
+		return this.request(`tenants/${form.tenant_id}`, HttpType.Get);
 	}
 
 	async updateTenant(form: TenantId & TenantOptional): Promise<TenantView> {
-		return this.request(`tenants/${form.tenant_id}`, {
-			method: "PUT",
-			body: JSON.stringify(form),
-		});
+		return this.request(`tenants/${form.tenant_id}`, HttpType.Post, form);
 	}
 
-	protected request<T>(endpoint: string, options?: RequestInit): Promise<T> {
-		const url = `${this.domain}/auth/v1/${endpoint}/${encodeGetParams(
-			<RequestInit>options?.body
-		)}`;
+	protected request<T>(
+		endpoint: string,
+		type: HttpType,
+		body?: object
+	): Promise<T> {
+		let config: object;
+		let url: string;
 		const headers = {
 			"Content-Type": "application/json",
 			"client-id": this.client_id,
 		};
-		const config = {
-			...options,
-			headers,
-		};
+		if (body) {
+			url = `${this.domain}/auth/v1/${endpoint}/${encodeGetParams(body)}`;
+			config = {
+				body: JSON.stringify(body),
+				headers,
+				method: type,
+			};
+		} else {
+			url = `${this.domain}/auth/v1/${endpoint}`;
+			config = {
+				headers,
+				method: type,
+			};
+		}
 
 		return fetch(url, config).then((response) => {
 			if (response.ok) {
