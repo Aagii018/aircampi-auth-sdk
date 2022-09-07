@@ -34,7 +34,7 @@ export class Tenant implements ITenant {
 			"client-id": this.client_id,
 		};
 		if (body) {
-			url = `${this.domain}/auth/v1/${endpoint}/${encodeGetParams(body)}`;
+			url = `${this.domain}/auth/v1/${endpoint}`;
 			config = {
 				body: JSON.stringify(body),
 				headers,
