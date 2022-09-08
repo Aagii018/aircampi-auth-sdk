@@ -1,9 +1,9 @@
 export interface ITenant {
 	getTenants(): Promise<TenantView[]>;
-	createTenant?(form: TenantName & TenantOptional): Promise<TenantView>;
-	updateTenant?(form: TenantId & TenantOptional): Promise<TenantView>;
-	deleteTenant?(form: TenantId): Promise<TenantView>;
-	getTenantById(form: TenantId): Promise<TenantView>;
+	createTenant?(body: TenantName & TenantOptional): Promise<TenantView>;
+	updateTenant?(tenant_id: string, body: TenantOptional): Promise<TenantView>;
+	deleteTenant?(tenant_id: string): Promise<TenantView>;
+	getTenantById(tenant_id: string): Promise<TenantView>;
 }
 
 export type TenantView = {
