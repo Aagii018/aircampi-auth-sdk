@@ -1,6 +1,6 @@
 {
 	"name": "aircampi-auth-sdk",
-	"version": "0.0.13",
+	"version": "0.0.14",
 	"description": "SDK for Aircampi Auth APi",
 	"main": "lib/index.js",
 	"types": "lib/index.d.ts",
