@@ -10,7 +10,7 @@ export class Client {
 		this.client_id = config.client_id;
 		this.domain = config.domain || "http://localhost:8536";
 		this.default_tenant = new Tenant(this.client_id, this.domain);
-		console.log(this.default_tenant.createTenant())
+		console.log(this.default_tenant.createTenant());
 	}
 
 	get tenant() {
@@ -18,7 +18,7 @@ export class Client {
 	}
 
 	get user() {
-		return new User(this.client_id, this.domain, {tenant_id: this.default_tenant.});
+		return new User(this.client_id, this.domain, { tenant_id: "j" });
 	}
 }
 
