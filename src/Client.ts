@@ -4,13 +4,22 @@ import { User } from "./management/user";
 export class Client {
 	private client_id: string;
 	private domain: string;
-	protected default_tenant: Tenant;
 
 	constructor(config: Config) {
 		this.client_id = config.client_id;
 		this.domain = config.domain || "http://localhost:8536";
-		this.default_tenant = new Tenant(this.client_id, this.domain);
-		console.log(this.default_tenant.createTenant());
+		fetch("http://localhost:8536/auth/v1/tenants", {
+			method: "POST", // *GET, POST, PUT, DELETE, etc.
+			headers: {
+				"Content-Type": "application/json",
+				"client-id": this.client_id,
+			},
+		}).then((response) => {
+			if (response.ok) {
+				return response.json();
+			}
+			throw new Error(response.statusText);
+		});
 	}
 
 	get tenant() {

@@ -16,7 +16,7 @@ export class Tenant extends Base implements ITenant {
 	}
 
 	async createTenant(
-		body?: { tenant_name: string } & TenantData
+		body: { tenant_name: string } & TenantData
 	): Promise<TenantView> {
 		return this.request("tenants", HttpType.Post, (body = body));
 	}
