@@ -7,7 +7,9 @@ export class Client {
 
 	constructor(config: Config) {
 		this.client_id = config.client_id;
+		
 		this.domain = config.domain || "http://localhost:8536";
+		console.log("Working");
 		fetch("http://localhost:8536/auth/v1/tenants", {
 			method: "POST", // *GET, POST, PUT, DELETE, etc.
 			headers: {
@@ -17,7 +19,7 @@ export class Client {
 		}).then((response) => {
 			if (response.ok) {
 				return response.json();
-			}
+			}     
 			throw new Error(response.statusText);
 		});
 	}

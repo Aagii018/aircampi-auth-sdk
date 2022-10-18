@@ -25,7 +25,7 @@ export class Tenant implements ITenant {
 		const headers = {
 			"Content-Type": "application/json",
 			"client-id": this.client_id,
-		};
+		}; 
 		const config = {
 			...options,
 			headers,

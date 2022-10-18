@@ -16,7 +16,7 @@ export interface IUser {
 
 export type Tenants = {
 	count: number;
-	has_more: false;
+	has_more: false; 
 	limit: number;
 	offset: number;
 	items: TenantView[];
@@ -27,7 +27,7 @@ export type Users = {
 	has_more: false;
 	limit: number;
 	offset: number;
-	items: UserView[];
+	items: UserView[]
 };
 
 export type UserView = {
