@@ -1,5 +1,5 @@
 {
-  "name": "aircampi-auth-sdk",
+  "name": "aircampi-auth-sdk-1",
   "version": "0.0.15",
   "description": "SDK for Aircampi Auth APi",
   "main": "lib/index.js",
