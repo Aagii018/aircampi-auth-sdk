@@ -1,6 +1,6 @@
 {
   "name": "aircampi-auth-sdk-1",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "SDK for Aircampi Auth APi",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -12,15 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tsetsuukhei/aircampi-auth-sdk.git"
+    "url": "git+https://https://github.com/Aagii018/aircampi-auth-sdk.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tsetsuukhei/aircampi-auth-sdk/issues"
+    "url": "https://github.com/Aagii018/aircampi-auth-sdk/issues"
   },
-  "homepage": "https://github.com/tsetsuukhei/aircampi-auth-sdk#readme",
+  "homepage": "https://github.com/Aagii018/aircampi-auth-sdk#readme",
   "devDependencies": {
     "@types/jest": "^28.1.6",
     "jest": "^28.1.3",
