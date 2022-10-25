@@ -1,3 +1,4 @@
+import { Resource } from "./management/resource";
 import { Tenant } from "./management/tenant";
 import { User } from "./management/user";
 
@@ -7,7 +8,7 @@ export class Client {
 
 	constructor(config: Config) {
 		this.client_id = config.client_id;
-		
+
 		this.domain = config.domain || "http://localhost:8536";
 		console.log("Working");
 		fetch("http://localhost:8536/auth/v1/tenants", {
@@ -19,7 +20,7 @@ export class Client {
 		}).then((response) => {
 			if (response.ok) {
 				return response.json();
-			}     
+			}
 			throw new Error(response.statusText);
 		});
 	}
@@ -30,6 +31,10 @@ export class Client {
 
 	get user() {
 		return new User(this.client_id, this.domain, { tenant_id: "j" });
+	}
+
+	get resource() {
+		return new Resource(this.client_id, this.domain);
 	}
 }
 

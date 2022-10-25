@@ -14,9 +14,22 @@ export interface IUser {
 	getUserById?(user_id: string): Promise<UserView>;
 }
 
+export interface IResource {
+	getResources(): Promise<Resource>;
+	createResources(
+		body: { resource_name: string } & ResourceData
+	): Promise<ResourceView>;
+	updateResource?(
+		resource_id: string,
+		body: ResourceData
+	): Promise<ResourceView>;
+	deleteResource(resource_id: string): Promise<ResourceView>;
+	getResourceById(resource_id: string): Promise<ResourceView>;
+}
+
 export type Tenants = {
 	count: number;
-	has_more: false; 
+	has_more: false;
 	limit: number;
 	offset: number;
 	items: TenantView[];
@@ -27,7 +40,15 @@ export type Users = {
 	has_more: false;
 	limit: number;
 	offset: number;
-	items: UserView[]
+	items: UserView[];
+};
+
+export type Resources = {
+	count: number;
+	has_more: false;
+	limit: number;
+	offset: number;
+	items: ResourceView[];
 };
 
 export type UserView = {
@@ -75,6 +96,18 @@ export type TenantView = {
 	identity_providers: object[];
 };
 
+export type ResourceView = {
+	resource_metadata: object;
+	resource_id: string;
+	resource_description: string;
+	app_metadata: object[];
+	created_date: string;
+	updated_date: string;
+	aggregations: object;
+	scopes: object[];
+	clients: object[];
+};
+
 export type TenantData = {
 	tenant_name?: string;
 	tenant_description?: string;
@@ -105,4 +138,13 @@ export type UserData = {
 	user_metadata?: object;
 	app_metadata?: object;
 	invited_at?: string;
+};
+
+export type ResourceData = {
+	id?: string;
+	resource_type?: string;
+	resource_name?: string;
+	resource_description?: string;
+	resource_metadata?: object;
+	app_metadata?: object;
 };
