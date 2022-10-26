@@ -15,7 +15,7 @@ export interface IUser {
 }
 
 export interface IResource {
-	getResources(): Promise<Resource>;
+	getResources(): Promise<Resources>;
 	createResources(
 		body: { resource_name: string } & ResourceData
 	): Promise<ResourceView>;
