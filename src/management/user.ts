@@ -22,3 +22,5 @@ export class User extends Base implements IUser {
 		return this.request("user", HttpType.Get);
 	}
 }
+
+console.log("Ssdsdsd");

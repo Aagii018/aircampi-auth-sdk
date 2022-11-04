@@ -16,9 +16,11 @@ export interface IUser {
 
 export interface IResource {
 	getResources(): Promise<Resources>;
-	createResources(
-		body: { resource_name: string } & ResourceData
-	): Promise<ResourceView>;
+	createResources(body: {
+		resource_name: string;
+		resource_description: string;
+		resource_type: string;
+	}): Promise<ResourceView>;
 	updateResource?(
 		resource_id: string,
 		body: ResourceData
@@ -98,14 +100,9 @@ export type TenantView = {
 
 export type ResourceView = {
 	resource_metadata: object;
-	resource_id: string;
+	resource_type: string;
+	resource_name: string;
 	resource_description: string;
-	app_metadata: object[];
-	created_date: string;
-	updated_date: string;
-	aggregations: object;
-	scopes: object[];
-	clients: object[];
 };
 
 export type TenantData = {

@@ -1,4 +1,4 @@
-import { Tenant } from "./management/tenant";
+import { Tenant } from "./src/management/tenant";
 
 export class Client {
 	private client_id: string;
